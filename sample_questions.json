@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "两数之和",
+    "content": "给定一个整数数组 nums 和一个目标值 target，请在数组中找出和为 target 的两个数的索引。",
+    "tags": ["数组", "哈希"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 2,
+    "title": "最长无重复子串",
+    "content": "给定一个字符串 s，请你找出其中不含有重复字符的最长子串长度。",
+    "tags": ["字符串", "滑动窗口"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 3,
+    "title": "岛屿数量",
+    "content": "给定一个由 '1'（陆地）和 '0'（水）组成的二维网格，请计算岛屿数量。",
+    "tags": ["DFS", "BFS", "矩阵"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 4,
+    "title": "最小覆盖子串",
+    "content": "给定字符串 s 和 t，请找出 s 中包含 t 所有字符的最小子串。",
+    "tags": ["字符串", "滑动窗口"],
+    "difficulty": "hard"
+  }
+]

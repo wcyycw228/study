@@ -171,15 +171,15 @@ with quiz_tab:
 
             col1, col2, col3 = st.columns(3)
             with col1:
-                if st.button("AC", key=f"ac_{question.qid}"):
+                if st.button("正确", key=f"ac_{question.qid}"):
                     record_answer(store, "正确")
                     st.rerun()
             with col2:
-                if st.button("WA", key=f"wa_{question.qid}"):
+                if st.button("错误", key=f"wa_{question.qid}"):
                     record_answer(store, "错误")
                     st.rerun()
             with col3:
-                if st.button("SKIP", key=f"skip_{question.qid}"):
+                if st.button("跳过", key=f"skip_{question.qid}"):
                     record_answer(store, "跳过")
                     st.rerun()
 
@@ -207,15 +207,15 @@ with wrong_tab:
 
             col1, col2, col3 = st.columns(3)
             with col1:
-                if st.button("AC", key=f"wrong_ac_{question.qid}"):
+                if st.button("正确", key=f"wrong_ac_{question.qid}"):
                     record_answer(store, "正确")
                     st.rerun()
             with col2:
-                if st.button("WA", key=f"wrong_wa_{question.qid}"):
+                if st.button("错误", key=f"wrong_wa_{question.qid}"):
                     record_answer(store, "错误")
                     st.rerun()
             with col3:
-                if st.button("SKIP", key=f"wrong_skip_{question.qid}"):
+                if st.button("跳过", key=f"wrong_skip_{question.qid}"):
                     record_answer(store, "跳过")
                     st.rerun()
         else:

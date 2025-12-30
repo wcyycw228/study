@@ -8,6 +8,41 @@ import tempfile
 import streamlit as st
 
 from study.app import DEFAULT_DB_PATH, Question, StudyStore
+import re
+import html
+import streamlit as st
+
+def split_answer_explain(content: str):
+    """
+    从 content 里拆出：
+    - body：题面（通常是选项）
+    - answer：答案
+    - explain：解析
+    content 里使用你题库的标记：【答案】、【解析】
+    """
+    content = content or ""
+    # body：去掉【答案】之后的部分
+    body = re.split(r"\n【答案】", content, maxsplit=1)[0].strip()
+
+    ans_match = re.search(r"【答案】(.*?)(?:\n【解析】|$)", content, re.S)
+    exp_match = re.search(r"【解析】(.*)$", content, re.S)
+
+    answer = ans_match.group(1).strip() if ans_match else ""
+    explain = exp_match.group(1).strip() if exp_match else ""
+    return body, answer, explain
+
+
+def render_text_block(title: str, body: str):
+    """更像刷题 App 的排版：支持换行（pre-wrap）"""
+    st.markdown("""
+    <style>
+    .q-title {font-size: 36px; font-weight: 800; margin: 0 0 10px 0;}
+    .q-body {font-size: 20px; line-height: 1.8; white-space: pre-wrap;}
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown(f"<div class='q-title'>{html.escape(title)}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='q-body'>{html.escape(body)}</div>", unsafe_allow_html=True)
 
 
 def load_store(db_path: Path) -> StudyStore:
@@ -173,15 +208,15 @@ with wrong_tab:
             col1, col2, col3 = st.columns(3)
             with col1:
                 if st.button("AC", key=f"wrong_ac_{question.qid}"):
-                    record_answer(store, "AC")
+                    record_answer(store, "正确")
                     st.rerun()
             with col2:
                 if st.button("WA", key=f"wrong_wa_{question.qid}"):
-                    record_answer(store, "WA")
+                    record_answer(store, "错误")
                     st.rerun()
             with col3:
                 if st.button("SKIP", key=f"wrong_skip_{question.qid}"):
-                    record_answer(store, "SKIP")
+                    record_answer(store, "跳过")
                     st.rerun()
         else:
             st.success("错题本刷题完成！")

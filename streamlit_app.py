@@ -137,15 +137,15 @@ with quiz_tab:
             col1, col2, col3 = st.columns(3)
             with col1:
                 if st.button("AC", key=f"ac_{question.qid}"):
-                    record_answer(store, "AC")
+                    record_answer(store, "正确")
                     st.rerun()
             with col2:
                 if st.button("WA", key=f"wa_{question.qid}"):
-                    record_answer(store, "WA")
+                    record_answer(store, "错误")
                     st.rerun()
             with col3:
                 if st.button("SKIP", key=f"skip_{question.qid}"):
-                    record_answer(store, "SKIP")
+                    record_answer(store, "跳过")
                     st.rerun()
 
             if st.session_state.quiz_message:
